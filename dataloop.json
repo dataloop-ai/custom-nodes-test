@@ -1,0 +1,170 @@
+{
+  "displayName": "custom nodes test",
+  "name": "custom-nodes-test",
+  "scope": "project",
+  "version": "1.0.1",
+  "codebase": {
+    "type": "git",
+    "gitUrl": "https://github.com/dataloop-ai/custom-nodes-test",
+    "gitTag": "main"
+  },
+  "components": {
+    "panels": [
+      {
+        "name": "panelOne",
+        "icon": "icon-dl-qa-sampling",
+        "supportedSlots": [
+          {
+            "type": "pipelineNodeConfig",
+            "configuration": {}
+          }
+        ],
+        "conditions": {
+          "resources": []
+        }
+      },
+      {
+        "name": "panelTwo",
+        "icon": "icon-dl-models",
+        "supportedSlots": [
+          {
+            "type": "pipelineNodeConfig",
+            "configuration": {}
+          }
+        ],
+        "conditions": {
+          "resources": []
+        }
+      }
+    ],
+    "pipelineNodes": [
+      {
+        "panel": "panelOne",
+        "invoke": {
+          "type": "function",
+          "namespace": "one.custom_nodes.one"
+        },
+        "scope": "global",
+        "categories": [
+          "data"
+        ]
+      },
+      {
+        "panel": "panelTwo",
+        "invoke": {
+          "type": "function",
+          "namespace": "two.custom_nodes.two"
+        },
+        "scope": "project",
+        "categories": [
+          "models"
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "name": "custom_nodes",
+        "versions": {
+          "dtlpy": "1.83.6"
+        },
+        "entryPoint": "modules/main.py",
+        "className": "ServiceRunner",
+        "initInputs": [],
+        "functions": [
+          {
+            "name": "one",
+            "description": "",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayIcon": "qa-sampling",
+            "displayName": "Data Split"
+          },
+          {
+            "name": "two",
+            "description": "",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayIcon": "qa-sampling",
+            "displayName": "Data Split"
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "one",
+        "panelNames": [
+          "dataSplit"
+        ],
+        "moduleName": "custom_nodes",
+        "botUserName": "pipeline@dataloop.ai",
+        "runtime": {
+          "podType": "regular-xs",
+          "numReplicas": 1,
+          "concurrency": 10,
+          "pyPackages": {},
+          "singleAgent": false,
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 1,
+            "maxReplicas": 2,
+            "queueLength": 10
+          },
+          "preemptible": false,
+          "executionTimeout": 172800,
+          "drainTime": 600,
+          "onReset": "failed",
+          "runExecutionAsProcess": false
+        },
+        "maxAttempts": 3
+      },
+      {
+        "name": "two",
+        "panelNames": [
+          "newModel"
+        ],
+        "moduleName": "create_new_model",
+        "runtime": {
+          "podType": "regular-xs",
+          "runnerImage": "gcr.io/viewo-g/piper/agent/runner/cpu/node14:latest",
+          "numReplicas": 1,
+          "concurrency": 10,
+          "pyPackages": {},
+          "singleAgent": false,
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 1,
+            "maxReplicas": 2,
+            "queueLength": 10
+          },
+          "preemptible": false,
+          "executionTimeout": 172800,
+          "drainTime": 600,
+          "onReset": "failed",
+          "runExecutionAsProcess": false
+        },
+        "maxAttempts": 3
+      }
+    ]
+  }
+}
