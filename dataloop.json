@@ -2,17 +2,17 @@
   "displayName": "Test for custom nodes",
   "name": "app-custom-nodes-test",
   "scope": "project",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/app-custom-nodes-test.git",
-    "gitTag": "v1.0.5"
+    "gitTag": "v1.0.6"
   },
   "components": {
     "panels": [
       {
         "name": "panelOne",
-        "icon": "icon-dl-qa-sampling",
+        "icon": "icon-dl-save",
         "supportedSlots": [
           {
             "type": "pipelineNodeConfig",
@@ -29,7 +29,7 @@
         "panel": "panelOne",
         "invoke": {
           "type": "function",
-          "namespace": "crashloop-service-for-custom-nodes.custom_nodes.one"
+          "namespace": "crashloop-service-for-custom-nodes.custom_nodes.run_one"
         },
         "scope": "global",
         "categories": [
