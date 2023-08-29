@@ -1,12 +1,12 @@
 {
   "displayName": "custom nodes test",
-  "name": "custom-nodes-test",
+  "name": "app-custom-nodes-test",
   "scope": "project",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/app-custom-nodes-test.git",
-    "gitTag": "v1.0.2"
+    "gitTag": "v1.0.3"
   },
   "components": {
     "panels": [
