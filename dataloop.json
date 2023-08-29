@@ -2,11 +2,11 @@
   "displayName": "custom nodes test",
   "name": "app-custom-nodes-test",
   "scope": "project",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/app-custom-nodes-test.git",
-    "gitTag": "v1.0.3"
+    "gitTag": "v1.0.4"
   },
   "components": {
     "panels": [
@@ -93,7 +93,7 @@
           "panelOne"
         ],
         "moduleName": "custom_nodes",
-        "botUserName": "pipeline@dataloop.ai",
+        "botUserName": "bot.244107fe-56fc-40f6-afbf-00f307dfcb32@bot.dataloop.ai",
         "runtime": {
           "podType": "regular-xs",
           "numReplicas": 1,
