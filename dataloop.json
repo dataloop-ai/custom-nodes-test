@@ -1,18 +1,18 @@
 {
-  "displayName": "Test for custom nodes",
-  "name": "app-custom-nodes-test",
+  "displayName": "Test for crashloop service",
+  "name": "app-custom-nodes-crashloop-test",
   "scope": "project",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/app-custom-nodes-test.git",
-    "gitTag": "v1.0.7"
+    "gitTag": "v1.0.8"
   },
   "components": {
     "panels": [
       {
         "name": "panelOne",
-        "icon": "icon-dl-save",
+        "icon": "icon-dl-variable",
         "supportedSlots": [
           {
             "type": "pipelineNodeConfig",
@@ -31,7 +31,6 @@
           "type": "function",
           "namespace": "crashloop-service-for-custom-nodes.custom_nodes.run_one"
         },
-        "scope": "global",
         "categories": [
           "data"
         ]
@@ -106,12 +105,12 @@
             "maxReplicas": 2,
             "queueLength": 10
           },
-          "preemptible": false,
-          "executionTimeout": 172800,
-          "drainTime": 600,
-          "onReset": "failed",
-          "runExecutionAsProcess": false
+          "preemptible": false
         },
+        "executionTimeout": 172800,
+        "drainTime": 600,
+        "onReset": "failed",
+        "runExecutionAsProcess": false,
         "maxAttempts": 3
       }
     ]
