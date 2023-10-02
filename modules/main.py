@@ -2,8 +2,7 @@ import dtlpy as dl
 import random
 import datetime
 import json
-import loggingfg
-fgbfdgbfgdbdfhdgbhgfbhgfbfghb
+import logging
 
 logging.basicConfig(level=logging.INFO)
 
