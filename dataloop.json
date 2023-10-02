@@ -1,31 +1,18 @@
 {
-  "displayName": "custom nodes test",
-  "name": "custom-nodes-test",
+  "displayName": "Test for crashloop service",
+  "name": "app-custom-nodes-crashloop-test",
   "scope": "project",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "codebase": {
     "type": "git",
-    "gitUrl": "https://github.com/dataloop-ai/custom-nodes-test",
-    "gitTag": "main"
+    "gitUrl": "https://github.com/dataloop-ai/app-custom-nodes-test.git",
+    "gitTag": "v1.0.8"
   },
   "components": {
     "panels": [
       {
         "name": "panelOne",
-        "icon": "icon-dl-qa-sampling",
-        "supportedSlots": [
-          {
-            "type": "pipelineNodeConfig",
-            "configuration": {}
-          }
-        ],
-        "conditions": {
-          "resources": []
-        }
-      },
-      {
-        "name": "panelTwo",
-        "icon": "icon-dl-models",
+        "icon": "icon-dl-variable",
         "supportedSlots": [
           {
             "type": "pipelineNodeConfig",
@@ -42,22 +29,10 @@
         "panel": "panelOne",
         "invoke": {
           "type": "function",
-          "namespace": "one.custom_nodes.one"
+          "namespace": "crashloop-service-for-custom-nodes.custom_nodes.run_one"
         },
-        "scope": "global",
         "categories": [
           "data"
-        ]
-      },
-      {
-        "panel": "panelTwo",
-        "invoke": {
-          "type": "function",
-          "namespace": "two.custom_nodes.two"
-        },
-        "scope": "project",
-        "categories": [
-          "models"
         ]
       }
     ],
@@ -72,7 +47,7 @@
         "initInputs": [],
         "functions": [
           {
-            "name": "one",
+            "name": "run_one",
             "description": "",
             "input": [
               {
@@ -87,10 +62,10 @@
               }
             ],
             "displayIcon": "qa-sampling",
-            "displayName": "Data Split"
+            "displayName": "Run One"
           },
           {
-            "name": "two",
+            "name": "run_two",
             "description": "",
             "input": [
               {
@@ -105,19 +80,19 @@
               }
             ],
             "displayIcon": "qa-sampling",
-            "displayName": "Data Split"
+            "displayName": "Run Two"
           }
         ]
       }
     ],
     "services": [
       {
-        "name": "one",
+        "name": "crashloop-service-for-custom-nodes",
         "panelNames": [
-          "dataSplit"
+          "panelOne"
         ],
         "moduleName": "custom_nodes",
-        "botUserName": "pipeline@dataloop.ai",
+        "botUserName": "bot.244107fe-56fc-40f6-afbf-00f307dfcb32@bot.dataloop.ai",
         "runtime": {
           "podType": "regular-xs",
           "numReplicas": 1,
@@ -130,39 +105,12 @@
             "maxReplicas": 2,
             "queueLength": 10
           },
-          "preemptible": false,
-          "executionTimeout": 172800,
-          "drainTime": 600,
-          "onReset": "failed",
-          "runExecutionAsProcess": false
+          "preemptible": false
         },
-        "maxAttempts": 3
-      },
-      {
-        "name": "two",
-        "panelNames": [
-          "newModel"
-        ],
-        "moduleName": "create_new_model",
-        "runtime": {
-          "podType": "regular-xs",
-          "runnerImage": "gcr.io/viewo-g/piper/agent/runner/cpu/node14:latest",
-          "numReplicas": 1,
-          "concurrency": 10,
-          "pyPackages": {},
-          "singleAgent": false,
-          "autoscaler": {
-            "type": "rabbitmq",
-            "minReplicas": 1,
-            "maxReplicas": 2,
-            "queueLength": 10
-          },
-          "preemptible": false,
-          "executionTimeout": 172800,
-          "drainTime": 600,
-          "onReset": "failed",
-          "runExecutionAsProcess": false
-        },
+        "executionTimeout": 172800,
+        "drainTime": 600,
+        "onReset": "failed",
+        "runExecutionAsProcess": false,
         "maxAttempts": 3
       }
     ]
