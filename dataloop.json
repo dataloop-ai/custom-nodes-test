@@ -2,7 +2,7 @@
   "displayName": "custom nodes test",
   "name": "custom-nodes-test",
   "scope": "project",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/custom-nodes-test",
