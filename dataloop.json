@@ -2,7 +2,7 @@
   "displayName": "custom nodes test",
   "name": "custom-nodes-test",
   "scope": "project",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai/custom-nodes-test",
@@ -86,8 +86,8 @@
                 "name": "item"
               }
             ],
-            "displayIcon": "qa-sampling",
-            "displayName": "Data Split"
+            "displayIcon": "polyline",
+            "displayName": "one"
           },
           {
             "name": "two",
@@ -104,8 +104,8 @@
                 "name": "item"
               }
             ],
-            "displayIcon": "qa-sampling",
-            "displayName": "Data Split"
+            "displayIcon": "brush",
+            "displayName": "two"
           }
         ]
       }
@@ -114,10 +114,9 @@
       {
         "name": "one",
         "panelNames": [
-          "dataSplit"
+          "panelOne"
         ],
         "moduleName": "custom_nodes",
-        "botUserName": "pipeline@dataloop.ai",
         "runtime": {
           "podType": "regular-xs",
           "numReplicas": 1,
@@ -141,9 +140,9 @@
       {
         "name": "two",
         "panelNames": [
-          "newModel"
+          "panelTwo"
         ],
-        "moduleName": "create_new_model",
+        "moduleName": "custom_nodes",
         "runtime": {
           "podType": "regular-xs",
           "runnerImage": "gcr.io/viewo-g/piper/agent/runner/cpu/node14:latest",

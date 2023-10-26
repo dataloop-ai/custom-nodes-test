@@ -13,16 +13,16 @@ class ServiceRunner(dl.BaseServiceRunner):
         ...
 
     @staticmethod
-    def runOne(item: dl.Item) -> dl.Item:
+    def one(item: dl.Item) -> dl.Item:
         logging.info(f"Running service one on item: {item.id}")
-        item.metadata['service_one'] = 'service one'
+        item.metadata['service_one'] = 'service one v2'
         item.update()
         return item
 
     @staticmethod
-    def runTwo(item: dl.Item) -> dl.Item:
+    def two(item: dl.Item) -> dl.Item:
         logging.info(f"Running service two on item: {item.id}")
-        item.metadata['service_two'] = 'service two'
+        item.metadata['service_two'] = 'service two v2'
         item.update()
         return item
 
